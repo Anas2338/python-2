@@ -51,22 +51,23 @@ def main():
     
     Password  = st.text_input("Password", type="password")
 
-    if Password :
-        if Password in Common_Passwords:
-            st.error("❌ This password is too common. Please choose a more unique password.")
-        else:
-            strength , feedback = password_strength(Password)
-
-            if strength == "strong":
-                st.success(f"Password strength : {strength}")
-            elif strength == "moderate":
-                st.warning(f"Password strength : {strength}")
+    if st.button("Proceed"):
+        if Password :
+            if Password in Common_Passwords:
+                st.error("❌ This password is too common. Please choose a more unique password.")
             else:
-                st.error(f"Password strength : {strength}")
+                strength , feedback = password_strength(Password)
     
-            if strength in ["weak", "moderate"]:
-                st.write("Feedback to improve your password:")
-                for suggestion in feedback:
-                    st.write(f"- {suggestion}")
+                if strength == "strong":
+                    st.success(f"Password strength : {strength}")
+                elif strength == "moderate":
+                    st.warning(f"Password strength : {strength}")
+                else:
+                    st.error(f"Password strength : {strength}")
+        
+                if strength in ["weak", "moderate"]:
+                    st.write("Feedback to improve your password:")
+                    for suggestion in feedback:
+                        st.write(f"- {suggestion}")
 
 main()
