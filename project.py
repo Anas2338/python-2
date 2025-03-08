@@ -52,7 +52,9 @@ def main():
     Password  = st.text_input("Password", type="password")
 
     if st.button("Proceed"):
-        if Password :
+        if not Password:
+            st.error("❌ Password field cannot be empty. Please enter a password.")
+        else:
             if Password in Common_Passwords:
                 st.error("❌ This password is too common. Please choose a more unique password.")
             else:
